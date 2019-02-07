@@ -13,10 +13,12 @@ namespace ApiCurso.Controllers
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("applicationException/vnd.github.v3+json"));
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
             client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
 
-            var data = await client.GetStringAsync("https://api.github.com/orgs/donet/repos");
+            var data = await client.GetStringAsync("https://api.github.com/orgs/dotnet/repos");
+            client?.Dispose();
             return Ok(data);
         }
     }
